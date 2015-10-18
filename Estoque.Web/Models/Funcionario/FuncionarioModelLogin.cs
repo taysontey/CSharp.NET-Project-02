@@ -8,16 +8,16 @@ namespace Estoque.Web.Models
 {
     public class FuncionarioModelLogin
     {
-        [Required(ErrorMessage = "Erro, informe o login corretamente.")]
+        [Required(ErrorMessage = "Preencha o campo Login.")]
         [Display(Name = "Login:")]
         public string Login { get; set; }
 
-        [Required(ErrorMessage = "Erro, informe a senha corretamente.")]
+        [Required(ErrorMessage = "Preencha o campo Senha.")]
         [DataType(DataType.Password)]
         [Display(Name = "Senha:")]
         public string Senha { get; set; }
 
-        [Display(Name = "Manter conectado?")]
+        [Display(Name = "Manter conectado.")]
         public bool ManterConectado { get; set; }
     }
 }

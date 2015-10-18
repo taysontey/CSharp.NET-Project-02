@@ -10,17 +10,17 @@ namespace Estoque.Web.Models
     public class FuncionarioModelCadastro
     {
         [Required(ErrorMessage = "Por favor, informe o nome do funcionário.")]
-        [Display(Name = "Nome do Funcionário:")]
+        [Display(Name = "Nome:")]
         public string Nome { get; set; }
 
         [LoginDisponivel(ErrorMessage = "Erro. Este Login já encontra-se em uso.")]
         [Required(ErrorMessage = "Por favor, informe o login de acesso.")]
-        [Display(Name = "Login de Acesso:")]
+        [Display(Name = "Login:")]
         public string Login { get; set; }
 
         [Required(ErrorMessage = "Por favor, informe a senha de acesso.")]
         [DataType(DataType.Password)]
-        [Display(Name = "Senha de Acesso:")]
+        [Display(Name = "Senha:")]
         public string Senha { get; set; }
 
         [Required(ErrorMessage = "Por favor, confirme a senha de acesso.")]
