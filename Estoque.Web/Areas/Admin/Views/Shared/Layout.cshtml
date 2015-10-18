@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Área Administrativa</title>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+
+
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-7">
+                        <br />
+                        <br />
+                        <h3 style="text-align:center">Sistema de Estoque</h3>
+                    </div>
+                    <div class="col-md-5">
+                        @Html.Partial("_PartialLogin")
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <ul class="nav nav-tabs">
+                    <li><a href="~/Fornecedor/Index">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Fornecedores<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../Admin/CadastroFornecedor.aspx">Cadastrar Fornecedor</a></li>
+                            <li><a href="../Admin/ListarFornecedores.aspx">Listar Fornecedores</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Produtos<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../Admin/CadastroProduto.aspx">Cadastrar Produto</a></li>
+                            <li><a href="../Admin/ListarProdutos.aspx">Listar Produtos</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    @RenderBody()
+
+</body>
+</html>

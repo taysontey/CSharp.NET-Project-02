@@ -20,9 +20,15 @@ namespace Estoque.Web.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult Logout()
         {
-            return View();
+            FormsAuthentication.SignOut();
+
+            Session.Remove("funcionariologado");
+            Session.Abandon();
+
+            return View("Login");
         }
 
         public ActionResult Cadastro()
