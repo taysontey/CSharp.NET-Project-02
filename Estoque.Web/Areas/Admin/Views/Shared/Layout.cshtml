@@ -8,41 +8,43 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
 
+    <script src="~/Scripts/jquery-1.9.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    @RenderSection("javascript", required: false)
+
 </head>
 <body>
     <div class="container">
-        <div class="row">   
-            
-                
-                    
-                
-           
+        <div class="row">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     @Html.Partial("_PartialLogin")
                     <h3>Sistema de Estoque de Produtos</h3>
                 </div>
                 <ul class="nav nav-tabs">
-                    <li><a href="~/Fornecedor/Index">Home</a></li>
+                    <li>
+                        <a href="@Url.Action("Index", "Default")">Home</a>
+                    </li>
+
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Fornecedores<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="../Admin/CadastroFornecedor.aspx">Cadastrar Fornecedor</a></li>
-                            <li><a href="../Admin/ListarFornecedores.aspx">Listar Fornecedores</a></li>
+                            <li><a href="@Url.Action("Cadastro", "Fornecedor")">Cadastrar Fornecedor</a></li>
+                            <li><a href="#" data-target="#janela2" data-toggle="modal">Listar Fornecedores</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Produtos<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="../Admin/CadastroProduto.aspx">Cadastrar Produto</a></li>
-                            <li><a href="../Admin/ListarProdutos.aspx">Listar Produtos</a></li>
+                            <li><a href="@Url.Action("Cadastro", "Produto")">Cadastrar Produto</a></li>
+                            <li><a href="#" data-target="#janela4" data-toggle="modal">Listar Produtos</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-
     @RenderBody()
 </body>
 </html>

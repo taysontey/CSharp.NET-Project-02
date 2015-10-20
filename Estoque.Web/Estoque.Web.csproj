@@ -105,7 +105,9 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_PartialLogin.cshtml" />
-    <Content Include="Areas\Admin\Views\Fornecedor\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Fornecedor\Cadastro.cshtml" />
+    <Content Include="Areas\Admin\Views\Produto\Cadastro.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -119,7 +121,11 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Admin\Controllers\FornecedorController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProdutoController.cs" />
+    <Compile Include="Areas\Admin\Models\FornecedorModelCadastro.cs" />
+    <Compile Include="Areas\Admin\Models\ProdutoModelCadastro.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -141,7 +147,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Imagens\" />
   </ItemGroup>
   <ItemGroup>

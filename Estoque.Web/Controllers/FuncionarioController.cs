@@ -86,7 +86,7 @@ namespace Estoque.Web.Controllers
 
                         Session.Add("funcionariologado", f);
 
-                        return RedirectToAction("Index", "Fornecedor", new {area = "Admin"});
+                        return RedirectToAction("Index", "Default", new {area = "Admin"});
                     }
                     else
                     {
