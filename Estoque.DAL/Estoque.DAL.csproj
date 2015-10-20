@@ -48,10 +48,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataSource\Conexao.cs" />
+    <Compile Include="Entity\Fornecedor.cs" />
     <Compile Include="Entity\Funcionario.cs" />
+    <Compile Include="Entity\Produto.cs" />
     <Compile Include="Generics\GenericDal.cs" />
     <Compile Include="Generics\IGenericDal.cs" />
+    <Compile Include="Persistence\FornecedorDal.cs" />
     <Compile Include="Persistence\FuncionarioDal.cs" />
+    <Compile Include="Persistence\ProdutoDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
