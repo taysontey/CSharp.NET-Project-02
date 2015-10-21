@@ -1,7 +1,77 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Cadastro";
     Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+@section javascript{
+
+    <script type="text/javascript">
+
+        $(document).ready(
+            function () {
+
+                var dados = {
+
+                };
+
+                $.ajax(
+                {
+                    type: "POST",
+                    url: "/Produto/FillDropDownFornecedor",
+                    cache: false,
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(dados),
+                    success: function (dados) {
+
+                        $("#DropDownFornecedor").append("<option value=''>" + "Selecione o Fornecedor" + "</option>");
+
+                        for (var i = 0; i < dados.length; i++) {
+
+                            $("#DropDownFornecedor").append("<option value=" + dados[i].IdFornecedor + ">" + dados[i].Nome + "</option>");
+
+                        }
+                        console.log('teste');
+                    },
+                    error: function (e) {
+                        $("#mensagem_produto").html(e.status);
+                    }
+
+                });
+
+                $("#btncadastro_produto").click(
+                    function () {
+
+                        var Model = {
+                            Nome: $("#nome_produto").val(),
+                            Preco: $("#preco_produto").val(),
+                            Quantidade: $("#qtd_produto").val(),
+                            Descricao: $("#desc_produto").val(),
+                            IdFornecedor: document.getElementById("DropDownFornecedor").value
+                        };
+
+                        $.ajax(
+                            {
+                                type: "POST",
+                                url: "/Produto/Cadastrar",
+                                data: Model,
+                                success: function (msg) {
+
+                                    $("#mensagem_produto").html(msg);
+
+                                    $("#nome_produto").val("");
+                                    $("#preco_produto").val("");
+                                    $("#qtd_produto").val("");
+                                    $("#desc_produto").val("");
+                                    //$("#DropDownFornecedor").selectedIndex = 0;
+                                },
+                                error: function (e) {
+                                    $("#mensagem_produto").html(e.status);
+                                }
+                            });
+                    });
+            });
+
+    </script>
 }
 
 <div class="container">
@@ -29,8 +99,14 @@
                     <br />
 
                     <label>Selecione o Fornecedor:</label>
-                    @*Dropdownlist para fornecedor*@
-                    
+                    <br />
+
+
+                    <select id="DropDownFornecedor"></select>
+
+                    @*Dropdownlist de fornecedores*@
+                    @*@Html.DropDownList("IdFornecedor", new SelectList(ViewBag.DropDownFornecedores, "IdFornecedor", "Nome"))*@
+
                 </div>
                 <div class="panel-footer">
                     <button id="btncadastro_produto" style="width:300px" class=" btn btn-success">
@@ -40,8 +116,7 @@
                     <span id="mensagem_produto"></span>
                 </div>
             </div>
+            <hr />
         </div>
     </div>
 </div>
-
-
