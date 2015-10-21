@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Estoque.Web.Areas.Admin.Controllers
 {
+    [Authorize]
     public class ProdutoController : Controller
     {
         // GET: Admin/Produto

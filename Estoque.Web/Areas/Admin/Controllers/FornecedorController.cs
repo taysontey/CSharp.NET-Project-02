@@ -9,6 +9,7 @@ using Estoque.DAL.Persistence;
 
 namespace Estoque.Web.Areas.Admin.Controllers
 {
+    [Authorize]
     public class FornecedorController : Controller
     {
         // GET: Admin/Fornecedor
@@ -21,6 +22,12 @@ namespace Estoque.Web.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public ActionResult Consulta()
+        {
+            return View();
+        }
+
         #region Metodos AJAX
 
         public JsonResult Cadastrar(FornecedorModelCadastro model)
@@ -43,6 +50,25 @@ namespace Estoque.Web.Areas.Admin.Controllers
             }
         }
 
+        public JsonResult Consultar(FornecedorModelConsulta model)
+        {
+            try
+            {
+                Funcionario u = (Funcionario)Session["funcionariologado"];
+
+                FornecedorDal d = new FornecedorDal();
+
+                List<Fornecedor> list = new List<Fornecedor>();
+                list.Add(d.FindById(model.IdFornecedor));
+
+                return Json(list);
+
+            }
+            catch (Exception e)
+            {
+                return Json(e.Message);
+            }
+        }
         #endregion
     }
 }
