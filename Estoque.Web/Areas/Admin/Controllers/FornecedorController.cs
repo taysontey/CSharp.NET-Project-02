@@ -28,6 +28,11 @@ namespace Estoque.Web.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult Lista()
+        {
+            return View();
+        }
+
         #region Metodos AJAX
 
         public JsonResult Cadastrar(FornecedorModelCadastro model)
@@ -63,6 +68,25 @@ namespace Estoque.Web.Areas.Admin.Controllers
 
                 return Json(list);
 
+            }
+            catch (Exception e)
+            {
+                return Json(e.Message);
+            }
+        }
+
+        public JsonResult Listar()
+        {
+            try
+            {
+                Funcionario u = (Funcionario)Session["funcionariologado"];
+
+                FornecedorDal d = new FornecedorDal();
+
+                List<Fornecedor> list = new List<Fornecedor>();
+                list = d.FindAll();
+                
+                return Json(list);
             }
             catch (Exception e)
             {
