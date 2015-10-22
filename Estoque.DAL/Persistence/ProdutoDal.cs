@@ -11,6 +11,6 @@ using Estoque.DAL.Generics;
 namespace Estoque.DAL.Persistence
 {
     public class ProdutoDal : GenericDal<Produto>
-    {
+    {  
     }
 }

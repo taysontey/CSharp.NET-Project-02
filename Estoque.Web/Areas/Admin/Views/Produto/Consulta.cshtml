@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "Consulta";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+@section javascript{
+
+    <script type="text/javascript">
+
+        $(document).ready(
+            function () {
+                $("#btnpesquisa_produto").click(
+                    function () {
+
+                        var Model = {
+                            IdProduto: $("#idproduto").val()
+                        };
+
+                        $.ajax(
+                            {
+                                type: "POST",
+                                url: "/Produto/Consultar",
+                                data: Model,
+                                success: function (lista) {
+
+                                    var dados = "";
+
+                                    for (var i = 0; i < lista.length; i++) {
+
+                                        dados += "<tr>";
+                                        dados += "<td align='center'>" + lista[i].IdProduto + "</td>";
+                                        dados += "<td align='center'>" + lista[i].Nome + "</td>";
+                                        dados += "<td align='center'>" + lista[i].Preco + "</td>";
+                                        dados += "<td align='center'>" + lista[i].Quantidade + "</td>";
+                                        dados += "<td align='center'>" + lista[i].Descricao + "</td>";
+                                        dados += "<td align='center'>" + lista[i].IdFornecedor + "</td>";
+                                        dados += "</tr>";
+                                    }
+
+                                    $("#tabela_produto tbody").empty();
+                                    $("#tabela_produto tbody").append(dados);
+                                
+                            },
+                            error: function (e) {
+                                $("#mensagem_pesquisa").html(e.status);
+                            }
+                    });
+            });
+        });
+
+    </script>
+
+}
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-3">
+
+            <p>
+                <h4>Consulta de Produtos</h4>
+            </p>
+            <input type="text" placeholder="Código" id="idproduto" class="form-control" />
+            <br />
+            <button id="btnpesquisa_produto" class="btn btn-success btn-block">
+                Pesquisar Produto
+            </button>
+
+        </div>
+
+        <div class="col-md-9">
+
+            <span id="mensagem_pesquisa"></span>
+
+            <table id="tabela_produto" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">Código</th>
+                        <th style="text-align:center">Nome</th>
+                        <th style="text-align:center">Preço</th>
+                        <th style="text-align:center">Quantidade</th>
+                        <th style="text-align:center">Descrição</th>
+                        <th style="text-align:center">Fornecedor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="center">Não há dados para exibir.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

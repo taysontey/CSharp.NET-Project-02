@@ -10,17 +10,10 @@
         $(document).ready(
             function () {
 
-                var dados = {
-
-                };
-
                 $.ajax(
                 {
                     type: "POST",
                     url: "/Produto/FillDropDownFornecedor",
-                    cache: false,
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify(dados),
                     success: function (dados) {
 
                         $("#DropDownFornecedor").append("<option value=''>" + "Selecione o Fornecedor" + "</option>");
@@ -62,7 +55,7 @@
                                     $("#preco_produto").val("");
                                     $("#qtd_produto").val("");
                                     $("#desc_produto").val("");
-                                    //$("#DropDownFornecedor").selectedIndex = 0;
+                                    document.getElementById("DropDownFornecedor").selectedIndex = 0;
                                 },
                                 error: function (e) {
                                     $("#mensagem_produto").html(e.status);
@@ -100,12 +93,7 @@
 
                     <label>Selecione o Fornecedor:</label>
                     <br />
-
-
                     <select id="DropDownFornecedor"></select>
-
-                    @*Dropdownlist de fornecedores*@
-                    @*@Html.DropDownList("IdFornecedor", new SelectList(ViewBag.DropDownFornecedores, "IdFornecedor", "Nome"))*@
 
                 </div>
                 <div class="panel-footer">

@@ -17,9 +17,14 @@ namespace Estoque.Web.Areas.Admin.Controllers
         {
             return View();
         }
-        
+
         public ActionResult Cadastro()
-        {        
+        {
+            return View();
+        }
+
+        public ActionResult Consulta()
+        {
             return View();
         }
 
@@ -59,8 +64,36 @@ namespace Estoque.Web.Areas.Admin.Controllers
             }
         }
 
-        
+        public JsonResult Consultar(ProdutoModelConsulta model)
+        {
+            try
+            {
+                Funcionario u = (Funcionario)Session["funcionariologado"];
 
+                ProdutoDal d = new ProdutoDal();
+
+                var data = d.FindById(model.IdProduto);
+
+                Produto p = new Produto();
+
+                p.IdProduto = data.IdProduto;
+                p.Nome = data.Nome;
+                p.Preco = data.Preco;
+                p.Quantidade = data.Quantidade;
+                p.Descricao = data.Descricao;
+                p.IdFornecedor = data.IdFornecedor;
+
+                List<Produto> lista = new List<Produto>();
+                lista.Add(p);
+
+                return Json(lista);
+
+            }
+            catch (Exception e)
+            {
+                return Json(e.Message);
+            }
+        }
         #endregion
     }
 }
