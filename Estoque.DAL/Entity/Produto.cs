@@ -40,7 +40,7 @@ namespace Estoque.DAL.Entity
 
         #region Relacionamento
         [ForeignKey("IdFornecedor")]
-        public virtual Fornecedor Fornecedor { get; set; }
+        public Fornecedor Fornecedor { get; set; }
         #endregion
     }
 }

@@ -23,30 +23,39 @@
                                 data: Model,
                                 success: function (lista) {
 
-                                    var dados = "";
+                                    if (lista[0] != null) {
 
-                                    for (var i = 0; i < lista.length; i++) {
+                                        var dados = "";
 
-                                        dados += "<tr>";
-                                        dados += "<td align='center'>" + lista[i].IdProduto + "</td>";
-                                        dados += "<td align='center'>" + lista[i].Nome + "</td>";
-                                        dados += "<td align='center'>" + lista[i].Preco + "</td>";
-                                        dados += "<td align='center'>" + lista[i].Quantidade + "</td>";
-                                        dados += "<td align='center'>" + lista[i].Descricao + "</td>";
-                                        dados += "<td align='center'>" + lista[i].IdFornecedor + "</td>";
-                                        dados += "</tr>";
+                                        for (var i = 0; i < lista.length; i++) {
+
+                                            dados += "<tr>";
+                                            dados += "<td align='center'>" + lista[i].IdProduto + "</td>";
+                                            dados += "<td align='center'>" + lista[i].Nome + "</td>";
+                                            dados += "<td align='center'>" + lista[i].Preco + "</td>";
+                                            dados += "<td align='center'>" + lista[i].Quantidade + "</td>";
+                                            dados += "<td align='center'>" + lista[i].Descricao + "</td>";
+                                            dados += "<td align='center'>" + lista[i].IdFornecedor + "</td>";
+                                            dados += "</tr>";
+                                        }
+
+                                        $("#tabela_produto tbody").empty();
+                                        $("#tabela_produto tbody").append(dados);
+                                        $("#mensagem_pesquisa").html("");
+
                                     }
+                                    else {
 
-                                    $("#tabela_produto tbody").empty();
-                                    $("#tabela_produto tbody").append(dados);
-                                
-                            },
-                            error: function (e) {
-                                $("#mensagem_pesquisa").html(e.status);
-                            }
+                                        $("#mensagem_pesquisa").html("Produto não encontrado.");
+                                        $("#tabela_produto tbody").empty();
+                                    }
+                                },
+                                error: function (e) {
+                                    $("#mensagem_pesquisa").html(e.status);
+                                }
+                            });
                     });
             });
-        });
 
     </script>
 

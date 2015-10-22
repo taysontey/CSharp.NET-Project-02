@@ -72,21 +72,10 @@ namespace Estoque.Web.Areas.Admin.Controllers
 
                 ProdutoDal d = new ProdutoDal();
 
-                var data = d.FindById(model.IdProduto);
+                List<Produto> list = new List<Produto>();
+                list.Add(d.FindById(model.IdProduto));
 
-                Produto p = new Produto();
-
-                p.IdProduto = data.IdProduto;
-                p.Nome = data.Nome;
-                p.Preco = data.Preco;
-                p.Quantidade = data.Quantidade;
-                p.Descricao = data.Descricao;
-                p.IdFornecedor = data.IdFornecedor;
-
-                List<Produto> lista = new List<Produto>();
-                lista.Add(p);
-
-                return Json(lista);
+                return Json(list);
 
             }
             catch (Exception e)
