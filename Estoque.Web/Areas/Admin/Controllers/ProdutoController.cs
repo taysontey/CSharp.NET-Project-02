@@ -28,6 +28,11 @@ namespace Estoque.Web.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult Lista()
+        {
+            return View();
+        }
+
         #region Metodos AJAX
 
         public JsonResult FillDropDownFornecedor()
@@ -77,6 +82,25 @@ namespace Estoque.Web.Areas.Admin.Controllers
 
                 return Json(list);
 
+            }
+            catch (Exception e)
+            {
+                return Json(e.Message);
+            }
+        }
+
+        public JsonResult Listar()
+        {
+            try
+            {
+                Funcionario u = (Funcionario)Session["funcionariologado"];
+
+                ProdutoDal d = new ProdutoDal();
+
+                List<Produto> list = new List<Produto>();
+                list = d.FindAll();
+
+                return Json(list);
             }
             catch (Exception e)
             {
