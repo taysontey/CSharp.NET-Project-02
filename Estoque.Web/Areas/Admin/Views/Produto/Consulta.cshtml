@@ -36,6 +36,7 @@
                                             dados += "<td align='center'>" + lista[i].Quantidade + "</td>";
                                             dados += "<td align='center'>" + lista[i].Descricao + "</td>";
                                             dados += "<td align='center'>" + lista[i].IdFornecedor + "</td>";
+                                            dados += "<td>" + "<button id='btnEdit'>" + 'Editar' + "</button>" + ' ' + "<button id='btnDelete'>" + 'Excluir' + "</button>" + "</td>";
                                             dados += "</tr>";
                                         }
 
@@ -43,6 +44,29 @@
                                         $("#tabela_produto tbody").append(dados);
                                         $("#mensagem_pesquisa").html("");
 
+                                        $("#btnDelete").click(
+                                           function () {
+
+                                               var Model = {
+
+                                                   IdProduto: lista[0].IdProduto
+                                               };
+
+                                               $.ajax(
+                                                    {
+                                                        type: "POST",
+                                                        url: "/Produto/Excluir",
+                                                        data: Model,
+                                                        success: function (msg) {
+                                                            $("#tabela_produto tbody").empty();
+                                                            $("#mensagem_pesquisa").html(msg);
+                                                        },
+                                                        error: function (e) {
+                                                            $("#mensagem_pesquisa").html(e.status);
+                                                        }
+                                                    })
+
+                                           });
                                     }
                                     else {
 

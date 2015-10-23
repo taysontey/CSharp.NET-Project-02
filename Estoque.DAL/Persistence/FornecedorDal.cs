@@ -16,11 +16,11 @@ namespace Estoque.DAL.Persistence
         {
             using(Conexao Con = new Conexao())
             {
-                var found = Con.Fornecedor
+                var found_fornecedor = Con.Fornecedor
                             .Where(f => f.IdFornecedor == IdFornecedor)
                             .FirstOrDefault();
 
-                Con.Fornecedor.Remove(found);
+                Con.Fornecedor.Remove(found_fornecedor);
                 Con.SaveChanges();
             }
         }

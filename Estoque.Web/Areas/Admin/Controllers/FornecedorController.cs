@@ -104,7 +104,7 @@ namespace Estoque.Web.Areas.Admin.Controllers
 
                 d.Delete(model.IdFornecedor);
 
-                return Json("Fornecedor Excluido.");
+                return Json("Fornecedor Excluído.");
                 
             }
             catch (Exception e)

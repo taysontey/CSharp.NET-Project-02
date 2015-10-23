@@ -12,5 +12,17 @@ namespace Estoque.DAL.Persistence
 {
     public class ProdutoDal : GenericDal<Produto>
     {
+        public void Delete(int IdProduto)
+        {
+            using (Conexao Con = new Conexao())
+            {
+                var found_produto = Con.Produto
+                            .Where(p => p.IdProduto == IdProduto)
+                            .FirstOrDefault();
+
+                Con.Produto.Remove(found_produto);
+                Con.SaveChanges();
+            }
+        }
     }
 }

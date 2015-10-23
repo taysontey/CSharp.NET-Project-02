@@ -107,6 +107,24 @@ namespace Estoque.Web.Areas.Admin.Controllers
                 return Json(e.Message);
             }
         }
+
+        public JsonResult Excluir(ProdutoModelExclusao model)
+        {
+            try
+            {
+                Funcionario u = (Funcionario)Session["funcionariologado"];
+
+                ProdutoDal d = new ProdutoDal();
+
+                d.Delete(model.IdProduto);
+
+                return Json("Produto Excluído.");
+            }
+            catch (Exception e)
+            {
+                return Json(e.Message);
+            }
+        }
         #endregion
     }
 }
