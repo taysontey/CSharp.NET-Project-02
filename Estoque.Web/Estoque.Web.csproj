@@ -129,6 +129,7 @@
     <Compile Include="Areas\Admin\Controllers\ProdutoController.cs" />
     <Compile Include="Areas\Admin\Models\FornecedorModelCadastro.cs" />
     <Compile Include="Areas\Admin\Models\FornecedorModelConsulta.cs" />
+    <Compile Include="Areas\Admin\Models\FornecedorModelExclusao.cs" />
     <Compile Include="Areas\Admin\Models\ProdutoModelCadastro.cs" />
     <Compile Include="Areas\Admin\Models\ProdutoModelConsulta.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />

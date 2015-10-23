@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+@section javascript{
+
+    <script type="text/javascript">
+
+        $(document).ready(
+            function () {
+
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/Fornecedor/Listar",
+                        success: function (lista) {
+
+                            if (lista[0] != null) {
+
+                                var dados = "";
+
+                                for (var i = 0; i < lista.length; i++) {
+
+                                    dados += "<tr>";
+                                    dados += "<td align='center'>" + lista[i].IdFornecedor + "</td>";
+                                    dados += "<td align='center'>" + lista[i].Nome + "</td>";
+                                    dados += "</tr>";
+                                }
+
+                                $("#lista_fornecedor tbody").empty();
+                                $("#lista_fornecedor tbody").append(dados);
+                                $("#mensagem_pesquisa").html("");
+
+                            }
+                            else {
+
+                                $("#mensagem_pesquisa").html("Nenhum Fornecedor encontrado.");
+                                $("#lista_fornecedor tbody").empty();
+                            }
+                        },
+                        error: function (e) {
+                            $("#mensagem_pesquisa").html(e.status);
+                        }
+                    });
+            });
+    </script>
+
+}
+
+<div class="container">
+    <div class="row" style="text-align:center">
+
+
+        <p>
+            <h4>Lista de Fornecedores</h4>
+        </p>
+
+
+
+        <div class="col-md-6 col-lg-offset-3">
+
+            <span id="mensagem_pesquisa"></span>
+
+            <table id="lista_fornecedor" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">Código</th>
+                        <th style="text-align:center">Nome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="center">Não há dados para exibir.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
