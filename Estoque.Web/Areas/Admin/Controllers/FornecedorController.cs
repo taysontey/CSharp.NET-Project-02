@@ -55,6 +55,29 @@ namespace Estoque.Web.Areas.Admin.Controllers
             }
         }
 
+        public JsonResult Editar(FornecedorModelEdicao model)
+        {
+            try
+            {
+                Funcionario u = (Funcionario)Session["funcionariologado"];
+
+                Fornecedor f = new Fornecedor();
+
+                f.IdFornecedor = model.IdFornecedor;
+                f.Nome = model.Nome;
+
+                FornecedorDal d = new FornecedorDal();
+
+                d.Update(f);
+
+                return Json("Fornecedor atualizado.");
+            }
+            catch (Exception e)
+            {
+                return Json(e.Message);
+            }
+        }
+   
         public JsonResult Consultar(FornecedorModelConsulta model)
         {
             try

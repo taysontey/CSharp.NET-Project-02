@@ -112,6 +112,7 @@
     <Content Include="Areas\Admin\Views\Produto\Consulta.cshtml" />
     <Content Include="Areas\Admin\Views\Fornecedor\Lista.cshtml" />
     <Content Include="Areas\Admin\Views\Produto\Lista.cshtml" />
+    <Content Include="Areas\Admin\Views\Fornecedor\Edicao.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -130,6 +131,7 @@
     <Compile Include="Areas\Admin\Controllers\ProdutoController.cs" />
     <Compile Include="Areas\Admin\Models\FornecedorModelCadastro.cs" />
     <Compile Include="Areas\Admin\Models\FornecedorModelConsulta.cs" />
+    <Compile Include="Areas\Admin\Models\FornecedorModelEdicao.cs" />
     <Compile Include="Areas\Admin\Models\FornecedorModelExclusao.cs" />
     <Compile Include="Areas\Admin\Models\ProdutoModelCadastro.cs" />
     <Compile Include="Areas\Admin\Models\ProdutoModelConsulta.cs" />
