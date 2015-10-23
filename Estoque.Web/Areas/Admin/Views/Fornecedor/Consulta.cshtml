@@ -1,0 +1,183 @@
+﻿@{
+    ViewBag.Title = "Consulta";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+@section javascript{
+
+    <script type="text/javascript">
+
+        $(document).ready(
+            function () {
+                $("#btnpesquisa_fornecedor").click(
+                    function () {
+                        var Model = {
+                            IdFornecedor: $("#idfornecedor").val()
+                        };
+
+                        $.ajax(
+                            {
+                                type: "POST",
+                                url: "/Fornecedor/Consultar",
+                                data: Model,
+                                success: function (lista) {
+
+                                    if (lista[0] != null) {
+
+                                        var dados = "";
+
+                                        for (var i = 0; i < lista.length; i++) {
+
+                                            dados += "<tr>";
+                                            dados += "<td align='center'>" + lista[i].IdFornecedor + "</td>";
+                                            dados += "<td align='center'>" + lista[i].Nome + "</td>";
+                                            dados += "<td>" + "<button id='btnEdit'>" + 'Editar' + "</button>" + ' ' + "<button id='btnDelete'>" + 'Excluir' + "</button>" + "</td>";
+                                            dados += "</tr>";
+
+                                        }
+
+                                        $("#tabela_fornecedor tbody").empty();
+                                        $("#tabela_fornecedor tbody").append(dados);
+                                        $("#mensagem_pesquisa").html("");
+
+                                        $("#btnDelete").click(
+                                           function () {
+
+                                               var Model = {
+
+                                                   IdFornecedor: lista[0].IdFornecedor
+                                               };
+
+                                               $.ajax(
+                                                    {
+                                                        type: "POST",
+                                                        url: "/Fornecedor/Excluir",
+                                                        data: Model,
+                                                        success: function (msg) {
+                                                            $("#tabela_fornecedor tbody").empty();
+                                                            $("#mensagem_pesquisa").html(msg);
+                                                        },
+                                                        error: function (e) {
+                                                            $("#mensagem_pesquisa").html(e.status);
+                                                        }
+                                                    })
+
+                                           });
+
+                                        $("#btnEdit").click(
+                                            function () {
+
+                                                $('#janela_edicao').modal('show');
+                                                $("#nome_fornecedor").val(lista[0].Nome)
+
+                                                $("#btnedicao_fornecedor").click(
+                                                    function () {
+
+                                                        var Model = {
+                                                            IdFornecedor: lista[0].IdFornecedor,
+                                                            Nome: $("#nome_fornecedor").val()
+                                                        };
+
+                                                        $.ajax(
+                                                            {
+                                                                type: "POST",
+                                                                url: "/Fornecedor/Editar",
+                                                                data: Model,
+                                                                success: function (msg) {
+                                                                    $('#janela_edicao').modal('hide');
+                                                                    document.getElementById("btnpesquisa_fornecedor").click();
+                                                                    $("#mensagem_pesquisa").html(msg);
+                                                                },
+                                                                error: function (e) {
+                                                                    $("#mensagem_pesquisa").html(e.status);
+                                                                }
+                                                            })
+
+                                                    });
+                                            });
+                                    }
+                                    else {
+
+                                        $("#mensagem_pesquisa").html("Fornecedor não encontrado.");
+                                        $("#tabela_fornecedor tbody").empty();
+                                    }
+                                },
+                                error: function (e) {
+                                    $("#mensagem_pesquisa").html(e.status);
+                                }
+                            });
+                    });
+            });
+
+    </script>
+
+}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-3">
+
+            <p>
+                <h4>Consulta de Fornecedores</h4>
+            </p>
+            <input type="text" placeholder="Código" id="idfornecedor" class="form-control" />
+            <br />
+            <button id="btnpesquisa_fornecedor" class="btn btn-success btn-block">
+                Pesquisar Fornecedor
+            </button>
+
+        </div>
+
+        <div class="col-md-5">
+
+            <span id="mensagem_pesquisa"></span>
+
+            <table id="tabela_fornecedor" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">Código</th>
+                        <th style="text-align:center">Nome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="center">Não há dados para exibir.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div id="janela_edicao" class="modal fade">
+    <div class="modal-dialog">
+        <div class="col-sm-6 col-md-10 col-md-offset-1">
+            <div class="modal-content">
+
+                <div class="modal-header bg-primary">
+                    <h3>Edição de Fornecedores</h3>
+                </div>
+
+                <div class="modal-body">
+
+                    <label>Nome:</label>
+                    <input type="text" id="nome_fornecedor" class="form-control" />
+                    <br />
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button id="btnedicao_fornecedor" class="btn btn-success">
+                        Editar Fornecedor
+                    </button>
+                    <hr />
+                    <span id="mensagem_receita"></span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
