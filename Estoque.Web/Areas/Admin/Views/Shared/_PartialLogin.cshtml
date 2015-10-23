@@ -1,23 +1,22 @@
-﻿<h5>Funcionário:</h5>
-<br />
-@using Estoque.DAL.Entity
+﻿@using Estoque.DAL.Entity
 @{
     if (Session["funcionariologado"] != null)
     {
         Funcionario f = (Funcionario)Session["funcionariologado"];
 
-        <div class="row">
-            
-            <div class="col-md-4">
+        <img src="/Imagens/@f.Foto" align="right" class="img-circle"
+             width="90" height="90" />
+
+        <div class="container">
+            <div class="row">
+
                 <label>Nome:</label> @f.Nome <br />
                 <label>Login: </label> @f.Login <br />
                 <label>Data de Cadastro: </label> @f.DataCadastro
-            </div>
-            <div class="col-md-8">
-                <img src="/Imagens/@f.Foto" class="img-circle"
-                     width="90" height="90" />
+
             </div>
         </div>
+
     }
 }
 
