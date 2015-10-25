@@ -134,6 +134,7 @@
     <Compile Include="Areas\Admin\Models\FornecedorModelExclusao.cs" />
     <Compile Include="Areas\Admin\Models\ProdutoModelCadastro.cs" />
     <Compile Include="Areas\Admin\Models\ProdutoModelConsulta.cs" />
+    <Compile Include="Areas\Admin\Models\ProdutoModelEdicao.cs" />
     <Compile Include="Areas\Admin\Models\ProdutoModelExclusao.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Global.asax.cs">

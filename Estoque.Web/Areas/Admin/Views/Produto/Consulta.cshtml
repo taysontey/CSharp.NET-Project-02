@@ -67,6 +67,45 @@
                                                     })
 
                                            });
+
+                                        $("#btnEdit").click(
+                                            function () {
+
+                                                $('#janela_edicao').modal('show');
+                                                $("#nome_produto").val(lista[0].Nome)
+                                                $("#preco_produto").val(lista[0].Preco)
+                                                $("#qtd_produto").val(lista[0].Quantidade)
+                                                $("#desc_produto").val(lista[0].Descricao)
+
+                                                $("#btnedicao_produto").click(
+                                                    function () {
+
+                                                        var Model = {
+                                                            IdProduto: lista[0].IdProduto,
+                                                            Nome: $("#nome_produto").val(),
+                                                            Preco: $("#preco_produto").val(),
+                                                            Quantidade: $("#qtd_produto").val(),
+                                                            Descricao: $("#desc_produto").val(),
+                                                            IdFornecedor: lista[0].IdFornecedor
+                                                        };
+
+                                                        $.ajax(
+                                                            {
+                                                                type: "POST",
+                                                                url: "/Produto/Editar",
+                                                                data: Model,
+                                                                success: function (msg) {
+                                                                    $('#janela_edicao').modal('hide');
+                                                                    document.getElementById("btnpesquisa_produto").click();
+                                                                    $("#mensagem_pesquisa").html(msg);
+                                                                },
+                                                                error: function (e) {
+                                                                    $("#mensagem_pesquisa").html(e.status);
+                                                                }
+                                                            })
+
+                                                    });
+                                            });
                                     }
                                     else {
 
@@ -127,3 +166,45 @@
     </div>
 </div>
 
+<div id="janela_edicao" class="modal fade">
+    <div class="modal-dialog">
+        <div class="col-sm-6 col-md-10 col-md-offset-1">
+            <div class="modal-content">
+
+                <div class="modal-header bg-primary">
+                    <h3>Edição de Produtos</h3>
+                </div>
+
+                <div class="modal-body">
+
+                    <label>Nome:</label>
+                    <input type="text" id="nome_produto" class="form-control" />
+                    <br />
+
+                    <label>Preço:</label>
+                    <input type="text" id="preco_produto" class="form-control" />
+                    <br />
+
+                    <label>Quantidade:</label>
+                    <input type="text" id="qtd_produto" class="form-control" />
+                    <br />
+
+                    <label>Descrição:</label>
+                    <input type="text" id="desc_produto" class="form-control" />
+                    <br />
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button id="btnedicao_produto" class="btn btn-success">
+                        Editar Produto
+                    </button>
+                    <hr />
+                    <span id="mensagem_receita"></span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

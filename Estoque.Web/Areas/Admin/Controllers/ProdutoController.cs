@@ -69,6 +69,33 @@ namespace Estoque.Web.Areas.Admin.Controllers
             }
         }
 
+        public JsonResult Editar(ProdutoModelEdicao model)
+        {
+            try
+            {
+                Funcionario u = (Funcionario)Session["funcionariologado"];
+
+                Produto p = new Produto();
+
+                p.IdProduto = model.IdProduto;
+                p.Nome = model.Nome;
+                p.Preco = model.Preco;
+                p.Quantidade = model.Quantidade;
+                p.Descricao = model.Descricao;
+                p.IdFornecedor = model.IdFornecedor;
+
+                ProdutoDal d = new ProdutoDal();
+
+                d.Update(p);
+
+                return Json("Produto atualizado.");
+            }
+            catch (Exception e)
+            {
+                return Json(e.Message);
+            }
+        }
+
         public JsonResult Consultar(ProdutoModelConsulta model)
         {
             try
